@@ -1,0 +1,437 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<title>Open API Service Javascript Demonstrator</title>
+</head>
+<body>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/themes/base/jquery-ui.css" media="all" rel="stylesheet" type="text/css" />
+<link href="http://static.jquery.com/ui/css/demo-docs-theme/ui.theme.css" media="all" rel="stylesheet" type="text/css" />
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.2/jquery-ui.min.js" type="text/javascript"></script>
+<!--
+<script src="http://dcolinux/sites/all/files/js/jquery.xml.js" type="text/javascript"></script>
+-->
+<style type="text/css">
+.alu-border { border: 1px solid #AAAAAA; padding: 0 .7em; }
+	.alu-field { width: 20em }
+	.alu-link { text-decoration: underline }</style>
+<div id="lbs-demo">
+	<div id="dialog" title="Open API Service: Javascript Demonstrator">
+		<div id="outer" style="margin-left: auto; margin-right: auto;">
+			<img alt="" id="logo" src="http://openapiservice.com/sites/default/files/oas2_logo.png" />
+			<div id="inner" style="margin-left: auto; margin-right: auto;">
+				<p>
+					Location-based services API calls:</p>
+				<div id="tabs">
+					<ul>
+						<li><font size="-2"><a href="#tabs-1">optinStatus</a></font></li>
+						<li><font size="-2"><a href="#tabs-2">tcText</a></font></li>
+						<li><font size="-2"><a href="#tabs-3">optin</a></font></li>
+						<li><font size="-2"><a href="#tabs-4">getLocation</a></font></li>
+					</ul>
+					<div id="tabs-1">
+						<fieldset class="ui-corner-all alu-border">
+							<legend><font size="-2">Information</font></legend><font size="-2"> </font>
+							<p>
+								<font size="-2">Get status of subscriber. The response indicates if the end user is or can be opted in, the MCCMNC ID of service provider, and the version of Terms &amp; condition text that needs to be accepted by subscriber before optin. You can also use optinStatus to verify that a previously initiated optin has completed.</font></p>
+							<p>
+								<font size="-2">There is a set of virtual phone numbers which you can use for test purposes, eg. range 19175550000 - 19175550016 They can be in different state depending on the current state of our test lab, but all of them should allow you to run getLocation request. Phone number 19175550001 is virtually opted-in.</font></p>
+						</fieldset>
+						<fieldset class="ui-corner-all alu-border">
+							<legend><font size="-2">Request</font></legend><font size="-2"> </font>
+							<form>
+								<fieldset class="ui-corner-all alu-border">
+									<legend><font size="-2">URL</font></legend><font size="-2"> </font>
+									<div class="alu-link" id="url-optinStatus">
+										<font size="-2">about:blank</font></div>
+									<p>&nbsp;</p>
+								</fieldset>
+								<p>&nbsp;</p>
+								<fieldset class="ui-corner-all alu-border">
+									<legend><font size="-2">Parameters</font></legend><font size="-2"> </font>
+									<table>
+										<tbody>
+											<tr>
+												<td>
+													<table>
+														<tbody>
+															<tr>
+																<td>
+																	<font size="-2"><label for="host">host</label></font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="host" name="host" value="api.prod2.openapiservice.com" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">appkey</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="appkey" value="487821fff38dd006859c7d63" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">phoneNumber</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="phoneNumber" value="19175550001" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">requestId</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="requestId" value="1234" /></font></td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+												<td>
+													<font size="-2"><button id="button">Submit</button></font></td>
+											</tr>
+										</tbody>
+									</table>
+								</fieldset>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+							</form>
+						</fieldset>
+						<fieldset class="ui-corner-all alu-border alu-result">
+							<legend><font size="-2">Return</font></legend><font size="-2"> </font>
+							<div class="alu-result-data">&nbsp;</div>
+						</fieldset>
+					</div>
+					<div id="tabs-2">
+						<fieldset class="ui-corner-all alu-border">
+							<legend><font size="-2">Information</font></legend><font size="-2"> </font>
+							<p>
+								<font size="-2">Get the text of Terms &amp; Conditions which the end user must accept before the application uses the optin operation. The application must make this text available to the end user and record the end user&#39;s acceptance.</font></p>
+							<p>
+								<font size="-2">Example spIds which you can use to see Terms&amp;Condition texts: 000_000_1, 000_000_2, 000_000_01 or the value you&#39;ve got from optinStatus response.</font></p>
+						</fieldset>
+						<fieldset class="ui-corner-all alu-border">
+							<legend><font size="-2">Request</font></legend><font size="-2"> </font>
+							<form>
+								<fieldset class="ui-corner-all alu-border">
+									<legend><font size="-2">URL</font></legend><font size="-2"> </font>
+									<div class="alu-link" id="url-tcText">
+										<font size="-2">about:blank</font></div>
+									<p>&nbsp;</p>
+								</fieldset>
+								<p>&nbsp;</p>
+								<fieldset class="ui-corner-all alu-border">
+									<legend><font size="-2">Parameters</font></legend><font size="-2"> </font>
+									<table>
+										<tbody>
+											<tr>
+												<td>
+													<table>
+														<tbody>
+															<tr>
+																<td>
+																	<font size="-2"><label for="host">host</label></font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="host" name="host" value="api.prod2.openapiservice.com" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">appkey</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="appkey" value="487821fff38dd006859c7d63" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">requestId</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="requestId" value="1234" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">spId</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="spId" value="000_000_01" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">tcVersion</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="tcVersion" value="1.0" /></font></td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+												<td>
+													<font size="-2"><button id="button">Submit</button></font></td>
+											</tr>
+										</tbody>
+									</table>
+								</fieldset>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+							</form>
+						</fieldset>
+						<fieldset class="ui-corner-all alu-border alu-result">
+							<legend><font size="-2">Return</font></legend><font size="-2"> </font>
+							<div class="alu-result-data">&nbsp;</div>
+						</fieldset>
+					</div>
+					<div id="tabs-3">
+						<fieldset class="ui-corner-all alu-border">
+							<legend><font size="-2">Information</font></legend><font size="-2"> </font>
+							<p>
+								<font size="-2">Start the optin process for a user of the application. A successful request triggers an SMS notification to the account owner, and the end user must accept this special notice to complete the process of optin registration.</font></p>
+							<p>&nbsp;</p>
+							<p>
+								<font size="-2">Note! Currently you can run test optin request, but you cannot run end to end optin scenario, ie. in the test environment you won&#39;t be able to receive SMS and send back consent message </font></p>
+						</fieldset>
+						<fieldset class="ui-corner-all alu-border">
+							<legend><font size="-2">Request</font></legend><font size="-2"> </font>
+							<form>
+								<fieldset class="ui-corner-all alu-border">
+									<legend><font size="-2">URL</font></legend><font size="-2"> </font>
+									<div class="alu-link" id="url-optin">
+										<font size="-2">about:blank</font></div>
+									<p>&nbsp;</p>
+								</fieldset>
+								<p>&nbsp;</p>
+								<fieldset class="ui-corner-all alu-border">
+									<legend><font size="-2">Parameters</font></legend><font size="-2"> </font>
+									<table>
+										<tbody>
+											<tr>
+												<td>
+													<table>
+														<tbody>
+															<tr>
+																<td>
+																	<font size="-2"><label for="host">host</label></font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="host" name="host" value="api.prod2.openapiservice.com" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">appkey</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="appkey" value="487821fff38dd006859c7d63" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">phoneNumber</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="phoneNumber" value="19175550001" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">requestId</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="requestId" value="1234" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">tcVersion</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="tcVersion" value="1.0" /></font></td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+												<td>
+													<font size="-2"><button id="button">Submit</button></font></td>
+											</tr>
+										</tbody>
+									</table>
+								</fieldset>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+							</form>
+						</fieldset>
+						<fieldset class="ui-corner-all alu-border alu-result">
+							<legend><font size="-2">Return</font></legend><font size="-2"> </font>
+							<div class="alu-result-data">&nbsp;</div>
+						</fieldset>
+					</div>
+					<div id="tabs-4">
+						<fieldset class="ui-corner-all alu-border">
+							<legend><font size="-2">Information</font></legend><font size="-2"> </font>
+							<p>
+								<font size="-2">Locates a single user, shows his location on a map with current weather forecast for the location. You can use virtual phone number 19175550001 to test getLocation service.</font></p>
+						</fieldset>
+						<fieldset class="ui-corner-all alu-border">
+							<legend><font size="-2">Request</font></legend><font size="-2"> </font>
+							<form>
+								<fieldset class="ui-corner-all alu-border">
+									<legend><font size="-2">URL</font></legend><font size="-2"> </font>
+									<div class="alu-link" id="url-getLocation">
+										<font size="-2">about:blank</font></div>
+									<p>&nbsp;</p>
+								</fieldset>
+								<p>&nbsp;</p>
+								<fieldset class="ui-corner-all alu-border">
+									<legend><font size="-2">Parameters</font></legend><font size="-2"> </font>
+									<table>
+										<tbody>
+											<tr>
+												<td>
+													<table>
+														<tbody>
+															<tr>
+																<td>
+																	<font size="-2"><label for="host">host</label></font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="host" name="host" value="api.prod2.openapiservice.com" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">appkey</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="appkey" value="487821fff38dd006859c7d63" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">phoneNumber</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="phoneNumber" value="19175550001" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">requestId</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="requestId" value="1234" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">requestedAccuracy</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="requestedAccuracy" value="0" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">acceptableAccuracy</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="acceptableAccuracy" value="0" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">maximumAge</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="maximumAge" value="0" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">responseTime</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="responseTime" value="0" /></font></td>
+															</tr>
+															<tr>
+																<td>
+																	<font size="-2">tolerance</font></td>
+																<td>
+																	<font size="-2"><input class="ui-corner-all alu-border alu-field" id="tolerance" value="DELAY_TOLERANT" /></font></td>
+															</tr>
+														</tbody>
+													</table>
+												</td>
+												<td>
+													<font size="-2"><button id="button">Submit</button></font></td>
+											</tr>
+										</tbody>
+									</table>
+								</fieldset>
+								<p>&nbsp;</p>
+								<p>&nbsp;</p>
+							</form>
+						</fieldset>
+						<fieldset class="ui-corner-all alu-border alu-result">
+							<legend><font size="-2">Return</font></legend><font size="-2"> </font>
+							<div class="alu-result-data">&nbsp;</div>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="lbs-footer">
+			<p style="font-size: small; text-align: left;">
+				Copyright &copy; 2010 Alcatel-Lucent. All rights reserved</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+		version = "/v1.0/"; // this is the Open API Service version number, needed for all calls
+		service = "optinStatus"; // set a default value for the service used, updated on tab select
+		function getParm() { // this function gathers parameter values from the user-edited form
+			host = "http://" + $("#host").val();
+			appkey = "?appkey=" + $("#appkey").val();
+			var parm = new Object();
+			if( service == "optinStatus" ) { // each service has a set of required parameters
+				call = "subservices/" + service;
+				parm['phoneNumber'] = $("#phoneNumber").val();
+				parm['requestId'] = $("#requestId").val();
+			}
+			if( service == "tcText" ) {
+				call = "subservices/" + service;
+				parm['requestId'] = $("#requestId").val();
+				parm['spId'] = $("#spId").val();
+				parm['tcVersion'] = $("#tcVersion").val();
+			}
+			if( service == "optin" ) {
+				call = "subservices/" + service;
+				parm['phoneNumber'] = $("#phoneNumber").val();
+				parm['requestId'] = $("#requestId").val();
+				parm['tcVersion'] = $("#tcVersion").val();
+			}
+			if( service == "getLocation" ) {
+				call = "location/" + service;
+				parm['phoneNumber'] = $("#phoneNumber").val();
+				parm['requestId'] = $("#requestId").val();
+				parm['requestedAccuracy'] = $("#requestedAccuracy").val();
+				parm['acceptableAccuracy'] = $("#acceptableAccuracy").val();
+				parm['maximumAge'] = $("#maximumAge").val();
+				parm['responseTime'] = $("#responseTime").val();
+				parm['tolerance'] = $("#tolerance").val();
+			}
+			parm['callback'] = host + version + call + appkey; // this callback is used by JSONP
+			return parm;
+		}
+		function setUrl() { // this function sets the viewable URL (same as one sent to JSONP)
+			parm = getParm();
+			url = parm['callback'];
+			for( var key in parm ) {
+				if( key != 'callback' ) {
+					url = url + '&' + key + '=' + parm[key];
+				}
+			}
+			$("#url-" + service).html("<a href='" + url + "'>" + url + "</a>");
+			return url;
+		}
+		$(function() {
+			$(".alu-result").hide();
+			$('.alu-result-data').html("");
+			setUrl();
+			$("#tabs").tabs();
+			$("#tabs").tabs("select", 0 );
+			$('#tabs').bind('tabsselect', function(event, ui) {
+				service = $(ui.tab).text();
+				setUrl();
+				$(".alu-result").hide();
+				$('.alu-result-data').html("");
+			});
+			$("input").bind("change keyup", function() {
+				change = $(this).val();
+				$( this.tagName + "#" + this.id ).each(function() {
+					$(this).val( change );
+				});
+				setUrl();
+			});
+			$("button").button();
+			$("button").click(function() { // make the API call through JSONP on button click
+				parm = getParm();
+				$.ajax({
+					data: parm,
+					url: 'http://demo.openapiservice.com/php/jsonp.php', // this is required for cross-site scripting in javascript -- you need to have a utility which can make GET and POST calls to different domains, but is itself hosted on the same domain as the javascript
+					success: function(data, textStatus, XMLHttpRequest) {
+						$('.alu-result-data').html(data);
+						$(".alu-result").show();
+					},
+				});
+				return false;
+			});
+		});
+</script>
+</body>
+</html>
